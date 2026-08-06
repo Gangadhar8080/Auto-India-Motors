@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reviews - AutoIndia Motors</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="car-image-patch.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">AUTO<span>INDIA</span></a>
+  <ul class="nav-links">
+    <li><a href="inventory.html">All Cars</a></li>
+    <li><a href="new-cars.html">New Cars</a></li>
+    <li><a href="used-cars.html">Used Cars</a></li>
+    <li><a href="reviews.html" class="active">Reviews</a></li>
+    <li><a href="modifications.html">Mods Guide</a></li>
+    <li><a href="emi.html">EMI</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="nav-right-controls" style="display: flex; align-items: center; gap: 16px;">
+    <a href="contact.html" class="nav-cta">Book Test Drive</a>
+  </div>
+
+  
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- REVIEWS -->
+<section id="reviews">
+  <div class="section-header reveal">
+    <div class="section-tag">Testimonials</div>
+    <h2 class="section-title">Customer Reviews</h2>
+    <p class="section-sub">15,000+ happy customers across India</p>
+    <div class="divider"></div>
+  </div>
+  <div class="reviews-grid">
+    <div class="review-card reveal">
+      <div class="review-quote">"</div>
+      <div class="review-stars">★★★★★</div>
+      <div class="review-text">Bought my Tata Nexon EV from AutoIndia Hyderabad. The team was incredibly knowledgeable and helped me get the best EMI deal. Charging setup support was also excellent.</div>
+      <div class="reviewer">
+        <div class="reviewer-avatar">RK</div>
+        <div><div class="reviewer-name">Ravi Kumar</div><div class="reviewer-car">Tata Nexon EV Max · Hyderabad</div></div>
+      </div>
+    </div>
+    <div class="review-card reveal">
+      <div class="review-quote">"</div>
+      <div class="review-stars">★★★★★</div>
+      <div class="review-text">Got my Mahindra Thar fully customized here — lifted suspension, off-road tyres, snorkel. All 100% legal mods done perfectly. Best modification workshop in Bangalore!</div>
+      <div class="reviewer">
+        <div class="reviewer-avatar">AP</div>
+        <div><div class="reviewer-name">Aditya Patil</div><div class="reviewer-car">Mahindra Thar · Bangalore</div></div>
+      </div>
+    </div>
+    <div class="review-card reveal">
+      <div class="review-quote">"</div>
+      <div class="review-stars">★★★★☆</div>
+      <div class="review-text">Excellent spare parts section. Got genuine Hyundai i20 parts at almost dealership price but with faster service and better guidance. Will definitely come back.</div>
+      <div class="reviewer">
+        <div class="reviewer-avatar">PM</div>
+        <div><div class="reviewer-name">Priya Menon</div><div class="reviewer-car">Hyundai i20 · Mumbai</div></div>
+      </div>
+    </div>
+    <div class="review-card reveal">
+      <div class="review-quote">"</div>
+      <div class="review-stars">★★★★★</div>
+      <div class="review-text">Traded in my old Ford EcoSport for a Kia Seltos. The entire process was smooth, transparent, and I got a great price on my old car. Very trustworthy dealership.</div>
+      <div class="reviewer">
+        <div class="reviewer-avatar">SJ</div>
+        <div><div class="reviewer-name">Suresh Joshi</div><div class="reviewer-car">Kia Seltos · Delhi</div></div>
+      </div>
+    </div>
+    <div class="review-card reveal">
+      <div class="review-quote">"</div>
+      <div class="review-stars">★★★★★</div>
+      <div class="review-text">The modification guide on their website saved me from illegal mods I was about to do. Staff explained all RTO rules clearly. Transparent and helpful — 5 stars!</div>
+      <div class="reviewer">
+        <div class="reviewer-avatar">VR</div>
+        <div><div class="reviewer-name">Vikram Rao</div><div class="reviewer-car">Mahindra XUV700 · Hyderabad</div></div>
+      </div>
+    </div>
+    <div class="review-card reveal">
+      <div class="review-quote">"</div>
+      <div class="review-stars">★★★★★</div>
+      <div class="review-text">Home delivery of my new Tata Punch was arranged in just 3 days. The on-road price breakdown was completely transparent — no hidden charges whatsoever. Highly recommended!</div>
+      <div class="reviewer">
+        <div class="reviewer-avatar">NB</div>
+        <div><div class="reviewer-name">Neha Bhatia</div><div class="reviewer-car">Tata Punch · Mumbai</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHATBOT -->
+<div class="chat-toggle" onclick="toggleChat()">💬 Support</div>
+<div class="chat-container" id="chatContainer">
+  <div class="chat-header">
+    <strong>AutoIndia AI Assistant</strong>
+    <button onclick="toggleChat()">×</button>
+  </div>
+  <div class="chat-box" id="chatBox">
+    <div class="chat-msg bot">Hello! I'm your AutoIndia assistant. How can I help you today?</div>
+  </div>
+  <div class="chat-input-area">
+    <input type="text" id="chatInput" placeholder="Type a message..." onkeypress="handleChatKey(event)">
+    <button onclick="sendChatMessage()">Send</button>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="index.html" class="nav-logo">AUTO<span>INDIA</span></a>
+      <p>India's most trusted multi-brand car dealership.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="inventory.html">All Cars</a></li>
+        <li><a href="new-cars.html">New Cars</a></li>
+        <li><a href="used-cars.html">Used Cars</a></li>
+        <li><a href="emi.html">EMI Calculator</a></li>
+        <li><a href="contact.html">Book Test Drive</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Brands</h4>
+      <ul>
+        <li><a href="#">Tata Motors</a></li>
+        <li><a href="#">Mahindra</a></li>
+        <li><a href="#">Hyundai India</a></li>
+        <li><a href="#">Kia India</a></li>
+        <li><a href="#">Ford India</a></li>
+        <li><a href="#">Maruti Suzuki</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#">Car Financing</a></li>
+        <li><a href="#">Insurance</a></li>
+        <li><a href="#">Car Service</a></li>
+        <li><a href="#">Modification Shop</a></li>
+        <li><a href="#">Home Delivery</a></li>
+        <li><a href="#">RTO Assistance</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 AutoIndia Motors Pvt. Ltd.</p>
+    <div class="social-links">
+      <a href="#" class="social-link">📘</a>
+      <a href="#" class="social-link">📸</a>
+      <a href="#" class="social-link">🐦</a>
+      <a href="#" class="social-link">▶️</a>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/918121370732?text=Hi%20AutoIndia%20Motors!%20I%20am%20interested%20in%20a%20car." target="_blank" class="whatsapp-float">💬</a>
+<button id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<div class="toast" id="toast"></div>
+
+<script src="script.js"></script>
+</body>
+</html>

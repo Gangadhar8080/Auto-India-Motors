@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brand New Cars - AutoIndia Motors</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="light-mode">
+  <body class="light-mode">
+  <!-- ADD THIS SCRIPT TO PREVENT THE WHITE FLASH -->
+  <script>
+    if (localStorage.getItem('autoindia_theme') === 'dark') {
+      document.body.classList.remove('light-mode');
+      document.body.classList.add('dark-mode');
+    }
+  </script>
+
+<!-- TOP NAVIGATION BAR -->
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">AUTO<span>INDIA</span></a>
+  <ul class="nav-links">
+    <li><a href="inventory.html">All Cars</a></li>
+    <li><a href="new-cars.html" class="active">New Cars</a></li>
+    <li><a href="used-cars.html">Used Cars</a></li>
+    <li><a href="reviews.html">Reviews</a></li>
+    <li><a href="modifications.html">Mods Guide</a></li>
+    <li><a href="emi.html">EMI</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="nav-right-controls" style="display: flex; align-items: center; gap: 16px;">
+    <a href="contact.html" class="nav-cta">Book Test Drive</a>
+  </div>
+
+  <!-- UPDATED NAV ICONS -->
+  <div class="nav-right-controls" style="display: flex; align-items: center; gap: 24px;">
+    <!-- Theme Toggle Button -->
+    <button class="icon-btn" title="Toggle Theme" id="themeIcon" onclick="toggleTheme()" style="cursor: pointer; background: transparent; border: none; outline: none; color: inherit;">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+    </button>
+    <a href="contact.html" class="icon-btn" title="Locations">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+    </a>
+    <button class="icon-btn" title="Language" style="cursor: pointer; background: transparent; border: none; outline: none; color: inherit;">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+    </button>
+    <a href="login.html" class="icon-btn" title="My Account">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+    </a>
+  </div>
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- NEW CARS INVENTORY -->
+<section id="inventory">
+  <div class="section-header reveal">
+    <div class="section-tag">Brand New Collection</div>
+    <h2 class="section-title">New Cars</h2>
+    <p class="section-sub">Latest 2025/2026 models directly from manufacturers with full warranty</p>
+    <div class="divider"></div>
+  </div>
+  <div class="inventory-grid" id="inventoryGrid"></div>
+</section>
+
+<!-- CAR DETAIL MODAL -->
+<div class="modal-overlay" id="carModal">
+  <div class="modal" id="modalContent">
+    <div class="modal-header">
+      <div>
+        <div id="modalBrand" style="font-size:12px;color:var(--red);font-weight:700;letter-spacing:2px;text-transform:uppercase"></div>
+        <div class="modal-title" id="modalName"></div>
+      </div>
+      <button class="modal-close" onclick="closeModal()">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-grid" id="modalStats"></div>
+      <div style="margin-top:16px">
+        <h3 style="font-family:Rajdhani,sans-serif;font-size:20px;margin-bottom:12px;color:var(--gold)">💰 Price Breakdown</h3>
+        <div class="modal-grid" id="modalPricing"></div>
+      </div>
+      <a href="contact.html" class="btn-primary" style="width:100%;margin-top:20px;text-align:center;display:block;">Book This Car →</a>
+    </div>
+  </div>
+</div>
+
+<!-- CHATBOT -->
+<div class="chat-toggle" onclick="toggleChat()">💬 Support</div>
+<div class="chat-container" id="chatContainer">
+  <div class="chat-header">
+    <strong>AutoIndia AI Assistant</strong>
+    <button onclick="toggleChat()">×</button>
+  </div>
+  <div class="chat-box" id="chatBox">
+    <div class="chat-msg bot">Hello! I'm your AutoIndia assistant. How can I help you today?</div>
+  </div>
+  <div class="chat-input-area">
+    <input type="text" id="chatInput" placeholder="Type a message..." onkeypress="handleChatKey(event)">
+    <button onclick="sendChatMessage()">Send</button>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="index.html" class="nav-logo">AUTO<span>INDIA</span></a>
+      <p>India's most trusted multi-brand car dealership. New cars, used cars, spare parts, modifications — all under one roof since 2008.</p>
+      <div style="margin-top:16px;font-size:13px;color:var(--muted)">
+        <div>📞 +91 9550553729</div>
+        <div>📧 info@autoindiamotors.in</div>
+        <div>📍 Hyderabad | Mumbai | Bangalore | Delhi</div>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="inventory.html">All Cars</a></li>
+        <li><a href="new-cars.html">New Cars</a></li>
+        <li><a href="used-cars.html">Used Cars</a></li>
+        <li><a href="emi.html">EMI Calculator</a></li>
+        <li><a href="contact.html">Book Test Drive</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Brands</h4>
+      <ul>
+        <li><a href="#">Tata Motors</a></li>
+        <li><a href="#">Mahindra</a></li>
+        <li><a href="#">Hyundai India</a></li>
+        <li><a href="#">Kia India</a></li>
+        <li><a href="#">Ford India</a></li>
+        <li><a href="#">Maruti Suzuki</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#">Car Financing</a></li>
+        <li><a href="#">Insurance</a></li>
+        <li><a href="#">Car Service</a></li>
+        <li><a href="#">Modification Shop</a></li>
+        <li><a href="#">Home Delivery</a></li>
+        <li><a href="#">RTO Assistance</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 AutoIndia Motors Pvt. Ltd.</p>
+    <div class="social-links">
+      <a href="#" class="social-link">📘</a>
+      <a href="#" class="social-link">📸</a>
+      <a href="#" class="social-link">🐦</a>
+      <a href="#" class="social-link">▶️</a>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    // Check if user is logged in (assuming you store user login state or token in localStorage)
+    const isLoggedIn = localStorage.getItem('autoindia_user') || sessionStorage.getItem('autoindia_user');
+    
+    if (isLoggedIn) {
+      // Find the Login/Register link in the navbar
+      const loginLinks = document.querySelectorAll('a[href="login.html"]');
+      
+      loginLinks.forEach(link => {
+        link.href = 'user-dashboard.html';
+        link.innerHTML = '<span style="font-size: 16px;">👤</span> My Dashboard';
+      });
+    }
+  });
+</script>
+</body>
+</html>

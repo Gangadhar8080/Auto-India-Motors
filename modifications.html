@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modification Guide - AutoIndia Motors</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="car-image-patch.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">AUTO<span>INDIA</span></a>
+  <ul class="nav-links">
+    <li><a href="inventory.html">All Cars</a></li>
+    <li><a href="new-cars.html">New Cars</a></li>
+    <li><a href="used-cars.html">Used Cars</a></li>
+    <li><a href="reviews.html">Reviews</a></li>
+    <li><a href="modifications.html" class="active">Mods Guide</a></li>
+    <li><a href="emi.html">EMI</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="nav-right-controls" style="display: flex; align-items: center; gap: 16px;">
+    <a href="contact.html" class="nav-cta">Book Test Drive</a>
+  </div>
+
+  <!-- NAV ICONS -->
+  <div class="nav-right-controls" style="display: flex; align-items: center; gap: 24px;">
+    <button class="icon-btn" title="Toggle Theme" id="themeIcon" onclick="toggleTheme()" style="cursor: pointer; background: transparent; border: none; outline: none; color: inherit;">
+       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+    </button>
+    <a href="contact.html" class="icon-btn" title="Locations">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+    </a>
+    <button class="icon-btn" title="Language" style="cursor: pointer; background: transparent; border: none; outline: none; color: inherit;">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+    </button>
+    <a href="login.html" class="icon-btn" title="My Account">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+    </a>
+  </div>
+
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- MODIFICATIONS GUIDE -->
+<section id="modifications">
+  <div class="section-header reveal">
+    <div class="section-tag">Know Before You Mod</div>
+    <h2 class="section-title">Modification Rules in India</h2>
+    <p class="section-sub">As per Motor Vehicles Act 1988 & Central Motor Vehicles Rules</p>
+    <div class="divider"></div>
+  </div>
+  <div class="mods-grid reveal">
+    <div class="mod-panel mod-legal">
+      <div class="mod-panel-title">✅ Legal Modifications</div>
+      <div class="mod-subtitle">Permitted under Indian Motor Vehicles Act with proper documentation</div>
+      <ul class="mod-list">
+        <li><span class="mod-check">✅</span>Changing tyre size within ±3% of original diameter (requires RTO re-registration)</li>
+        <li><span class="mod-check">✅</span>Alloy wheels of same size — no RTO approval needed for same-size upgrades</li>
+        <li><span class="mod-check">✅</span>LED bulb replacements for headlamps and interior (colour must remain white/amber per rule)</li>
+        <li><span class="mod-check">✅</span>Seat covers — fabric, leather, synthetic allowed. Colour changes are fine</li>
+        <li><span class="mod-check">✅</span>Cabin audio system upgrades — sub-woofers, amplifiers, screen replacements</li>
+        <li><span class="mod-check">✅</span>Roof rack and cargo carriers with OEM or certified mounts</li>
+        <li><span class="mod-check">✅</span>Bull bars and front guards on SUVs (must not obstruct number plate)</li>
+        <li><span class="mod-check">✅</span>Window tinting — up to 70% VLT for front, 50% for rear as per SC ruling</li>
+        <li><span class="mod-check">✅</span>Suspension lift up to 50mm with proof of structural certification</li>
+        <li><span class="mod-check">✅</span>Adding snorkel / air-intake relocation on 4x4 vehicles</li>
+        <li><span class="mod-check">✅</span>CNG / LPG kit conversion (must be ARAI certified and registered with RTO)</li>
+        <li><span class="mod-check">✅</span>Disability adaptations — hand controls, wheelchair ramps (encouraged by law)</li>
+      </ul>
+    </div>
+    <div class="mod-panel mod-illegal">
+      <div class="mod-panel-title">🚫 Illegal Modifications</div>
+      <div class="mod-subtitle">Banned under Section 52 of Motor Vehicles Act — risk of fine, seizure, or prosecution</div>
+      <ul class="mod-list">
+        <li><span class="mod-check">🚫</span>HID or xenon bulbs in halogen housings — causes dangerous glare, ₹5,000+ fine</li>
+        <li><span class="mod-check">🚫</span>Blue, red or green lights visible from front or rear — reserved for emergency vehicles</li>
+        <li><span class="mod-check">🚫</span>Pressure horns, multi-tone horns above 112 dB — noise pollution violation</li>
+        <li><span class="mod-check">🚫</span>Altering engine displacement or swapping engine without ARAI certification</li>
+        <li><span class="mod-check">🚫</span>Chassis modification or cutting/welding the body frame</li>
+        <li><span class="mod-check">🚫</span>Changing vehicle colour without RC update (RC must show same colour)</li>
+        <li><span class="mod-check">🚫</span>Dark window films below legal VLT limits — risk of challan + film removal</li>
+        <li><span class="mod-check">🚫</span>Neon underglow lights or strobe effects (hazard to other road users)</li>
+        <li><span class="mod-check">🚫</span>Removing catalytic converter or modifying exhaust to bypass BS6 emission norms</li>
+        <li><span class="mod-check">🚫</span>Changing seating capacity beyond RC-approved limits (e.g. adding seats to 4-seater)</li>
+        <li><span class="mod-check">🚫</span>Aftermarket LPG/CNG kits not certified by ARAI or PESO</li>
+        <li><span class="mod-check">🚫</span>Roof chopping, body widening or any structural alteration to the vehicle</li>
+      </ul>
+    </div>
+  </div>
+  <div class="reveal" style="margin-top:24px;background:rgba(240,165,0,0.07);border:1px solid rgba(240,165,0,0.25);border-radius:10px;padding:20px;max-width:700px;margin:24px auto 0">
+    <strong style="color:var(--gold)">⚠️ Note:</strong>
+    <span style="color:var(--muted);font-size:14px"> Always get ARAI certification and update your RC at the RTO before driving with any structural modification. Our AutoIndia certified workshop handles all paperwork for legal mods. Contact us for guidance.</span>
+  </div>
+</section>
+
+<!-- CHATBOT -->
+<div class="chat-toggle" onclick="toggleChat()">💬 Support</div>
+<div class="chat-container" id="chatContainer">
+  <div class="chat-header">
+    <strong>AutoIndia AI Assistant</strong>
+    <button onclick="toggleChat()">×</button>
+  </div>
+  <div class="chat-box" id="chatBox">
+    <div class="chat-msg bot">Hello! I'm your AutoIndia assistant. How can I help you today?</div>
+  </div>
+  <div class="chat-input-area">
+    <input type="text" id="chatInput" placeholder="Type a message..." onkeypress="handleChatKey(event)">
+    <button onclick="sendChatMessage()">Send</button>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="index.html" class="nav-logo">AUTO<span>INDIA</span></a>
+      <p>India's most trusted multi-brand car dealership. New cars, used cars, spare parts, modifications — all under one roof since 2008.</p>
+      <div style="margin-top:16px;font-size:13px;color:var(--muted)">
+        <div>📞 +91 9550553729</div>
+        <div>📧 info@autoindiamotors.in</div>
+        <div>📍 Hyderabad | Mumbai | Bangalore | Delhi</div>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="inventory.html">All Cars</a></li>
+        <li><a href="new-cars.html">New Cars</a></li>
+        <li><a href="used-cars.html">Used Cars</a></li>
+        <li><a href="emi.html">EMI Calculator</a></li>
+        <li><a href="contact.html">Book Test Drive</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Brands</h4>
+      <ul>
+        <li><a href="#">Tata Motors</a></li>
+        <li><a href="#">Mahindra</a></li>
+        <li><a href="#">Hyundai India</a></li>
+        <li><a href="#">Kia India</a></li>
+        <li><a href="#">Ford India</a></li>
+        <li><a href="#">Maruti Suzuki</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#">Car Financing</a></li>
+        <li><a href="#">Insurance</a></li>
+        <li><a href="#">Car Service</a></li>
+        <li><a href="#">Modification Shop</a></li>
+        <li><a href="#">Home Delivery</a></li>
+        <li><a href="#">RTO Assistance</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 AutoIndia Motors Pvt. Ltd. | GST: 36AABCA1234B1ZX | CIN: U50100TG2008PTC123456</p>
+    <div class="social-links">
+      <a href="#" class="social-link">📘</a>
+      <a href="#" class="social-link">📸</a>
+      <a href="#" class="social-link">🐦</a>
+      <a href="#" class="social-link">▶️</a>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/918121370732?text=Hi%20AutoIndia%20Motors!%20I%20am%20interested%20in%20a%20car." target="_blank" class="whatsapp-float">💬</a>
+<button id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<div class="toast" id="toast"></div>
+
+<script src="script.js"></script>
+</body>
+</html>

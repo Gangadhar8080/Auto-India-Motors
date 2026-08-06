@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login / Register - AutoIndia Motors</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+      .auth-wrapper {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), url('images/thar-roxx.jpg.webp') center/cover;
+        padding: 20px;
+      }
+      .auth-card {
+        background: #ffffff;
+        width: 100%;
+        max-width: 450px;
+        border-radius: 12px;
+        padding: 40px 30px;
+        position: relative; 
+        box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+      }
+      .auth-tabs {
+        display: flex;
+        background: #f1f3f5;
+        border-radius: 8px;
+        padding: 6px;
+        margin-bottom: 30px;
+        margin-top: 10px;
+      }
+      .auth-tab {
+        flex: 1;
+        padding: 12px;
+        text-align: center;
+        font-weight: 700;
+        font-size: 15px;
+        cursor: pointer;
+        border-radius: 6px;
+        transition: 0.3s;
+      }
+      .auth-tab.active {
+        background: #212529;
+        color: #fff;
+      }
+      .auth-tab:not(.active) {
+        color: #6c757d;
+      }
+      .auth-heading {
+        text-align: center;
+        font-family: 'Rajdhani', sans-serif;
+        font-size: 32px;
+        font-weight: 700;
+        color: #212529;
+        margin-bottom: 8px;
+      }
+      .auth-sub {
+        text-align: center;
+        color: #6c757d;
+        font-size: 14px;
+        margin-bottom: 30px;
+      }
+      .form-group {
+        margin-bottom: 20px;
+      }
+      .form-group label {
+        display: block;
+        font-size: 12px;
+        font-weight: 700;
+        color: #495057;
+        margin-bottom: 8px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+      .form-group input {
+        width: 100%;
+        padding: 14px;
+        border: 1px solid #ced4da;
+        border-radius: 6px;
+        font-size: 14px;
+        background: #f8f9fa;
+        outline: none;
+        transition: 0.3s;
+      }
+      .form-group input:focus {
+        border-color: #ff4724;
+        background: #fff;
+      }
+      .btn-login {
+        width: 100%;
+        background: #ff4724;
+        color: #fff;
+        padding: 16px;
+        border: none;
+        border-radius: 6px;
+        font-size: 16px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: 0.3s;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-top: 10px;
+      }
+      .btn-login:hover {
+        background: #e03e1e;
+        transform: translateY(-2px);
+      }
+      .demo-creds {
+        text-align: center;
+        font-size: 13px;
+        color: #6c757d;
+        margin-top: 20px;
+      }
+      
+      body.dark-mode .auth-card {
+        background: #1e1e1e;
+      }
+      body.dark-mode .auth-heading {
+        color: #fff;
+      }
+      body.dark-mode .form-group label {
+        color: #adb5bd;
+      }
+      body.dark-mode .form-group input {
+        background: #2a2a2a;
+        border-color: #444;
+        color: #fff;
+      }
+      body.dark-mode .auth-tabs {
+        background: #2a2a2a;
+      }
+      body.dark-mode .auth-tab.active {
+        background: #ff4724;
+      }
+      body.dark-mode .auth-tab:not(.active) {
+        color: #adb5bd;
+      }
+    </style>
+</head>
+<body class="light-mode">
+  
+  <script>
+    if (localStorage.getItem('autoindia_theme') === 'dark') {
+      document.body.classList.remove('light-mode');
+      document.body.classList.add('dark-mode');
+    }
+  </script>
+
+  <div class="auth-wrapper">
+    <div class="auth-card">
+      
+      <!-- CANCEL 'X' BUTTON TO RETURN TO HOME -->
+      <a href="index.html" title="Back to Home" style="position: absolute; top: 16px; right: 20px; font-size: 32px; color: #6c757d; text-decoration: none; line-height: 1; transition: 0.2s; font-family: 'Nunito', sans-serif;" onmouseover="this.style.color='#ff4724'" onmouseout="this.style.color='#6c757d'">&times;</a>
+
+      <!-- TABS -->
+      <div class="auth-tabs">
+        <div class="auth-tab active" id="tabLoginBtn" onclick="switchAuthTab('login')">Login</div>
+        <div class="auth-tab" id="tabRegisterBtn" onclick="switchAuthTab('register')">Register</div>
+      </div>
+
+      <!-- ================= LOGIN SECTION ================= -->
+      <div id="loginSection">
+        <h2 class="auth-heading">Welcome Back</h2>
+        <p class="auth-sub">Sign in to access your account & saved cars</p>
+
+        <div class="form-group">
+          <label>Username, Email or Mobile</label>
+          <input type="text" id="loginUser" placeholder="Enter username or email" autocomplete="off">
+        </div>
+
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" id="loginPass" placeholder="Enter password" autocomplete="new-password">
+        </div>
+
+        <!-- Triggers handleUnifiedLogin() from script.js -->
+        <button class="btn-login" onclick="handleUnifiedLogin()">Login</button>
+
+        <div class="demo-creds">
+          Demo Admin: <strong>admin / password123</strong>
+        </div>
+      </div>
+
+      <!-- ================= REGISTER SECTION ================= -->
+      <div id="registerSection" style="display: none;">
+        <h2 class="auth-heading">Create Account</h2>
+        <p class="auth-sub">Join AutoIndia to save cars & book test drives</p>
+
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" id="regName" placeholder="Enter your full name" autocomplete="off">
+        </div>
+
+        <div class="form-group">
+          <label>Mobile Number or Email</label>
+          <input type="text" id="regContact" placeholder="Enter mobile or email" autocomplete="off">
+        </div>
+
+        <div class="form-group">
+          <label>Create Password</label>
+          <input type="password" id="regPass" placeholder="Create a secure password" autocomplete="new-password">
+        </div>
+
+        <!-- Triggers handleRegistration() from script.js -->
+        <button class="btn-login" onclick="handleRegistration()">Register</button>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+  <script src="script.js"></script>
+
+  <!-- UI Tab Switcher Logic -->
+  <script>
+    function switchAuthTab(tabName) {
+      const loginBtn = document.getElementById('tabLoginBtn');
+      const registerBtn = document.getElementById('tabRegisterBtn');
+      const loginSec = document.getElementById('loginSection');
+      const registerSec = document.getElementById('registerSection');
+
+      if (tabName === 'login') {
+        loginBtn.classList.add('active');
+        registerBtn.classList.remove('active');
+        loginSec.style.display = 'block';
+        registerSec.style.display = 'none';
+      } else {
+        registerBtn.classList.add('active');
+        loginBtn.classList.remove('active');
+        registerSec.style.display = 'block';
+        loginSec.style.display = 'none';
+      }
+    }
+  </script>
+</body>
+</html>

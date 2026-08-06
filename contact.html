@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - AutoIndia Motors</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="car-image-patch.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">AUTO<span>INDIA</span></a>
+  <ul class="nav-links">
+    <li><a href="inventory.html">All Cars</a></li>
+    <li><a href="new-cars.html">New Cars</a></li>
+    <li><a href="used-cars.html">Used Cars</a></li>
+    <li><a href="reviews.html">Reviews</a></li>
+    <li><a href="modifications.html">Mods Guide</a></li>
+    <li><a href="emi.html">EMI</a></li>
+    <li><a href="contact.html" class="active">Contact</a></li>
+  </ul>
+  <div class="nav-right-controls" style="display: flex; align-items: center; gap: 16px;">
+    <a href="contact.html" class="nav-cta">Book Test Drive</a>
+  </div>
+
+  
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-header reveal">
+    <div class="section-tag">Get in Touch</div>
+    <h2 class="section-title">Contact Us</h2>
+    <div class="divider"></div>
+  </div>
+  <div class="contact-layout">
+    <div class="contact-info reveal">
+      <h2>Let's Find Your Perfect Car</h2>
+      <p>Whether you're buying, selling, or just exploring — our team is here to help. Book a free test drive or enquire about any vehicle in our inventory.</p>
+      <div class="contact-details">
+        <div class="contact-item">
+          <div class="contact-icon">📞</div>
+          <div class="contact-item-info">
+            <strong>Phone / WhatsApp</strong>
+            <span>+91 8121370732 | +91 7382926516</span>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📧</div>
+          <div class="contact-item-info">
+            <strong>Email</strong>
+            <span>sales@autoindiamotors.in | parts@autoindiamotors.in</span>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div class="contact-item-info">
+            <strong>Head Office</strong>
+            <span>Plot 45, Banjara Hills Road 10, Hyderabad 500034</span>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">🕐</div>
+          <div class="contact-item-info">
+            <strong>Working Hours</strong>
+            <span>Monday–Sunday: 9:00 AM – 8:00 PM</span>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">🚗</div>
+          <div class="contact-item-info">
+            <strong>Free Home Test Drive</strong>
+            <span>Available within 30km of all showrooms</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="contact-form reveal">
+      <div class="form-row">
+        <div class="form-group">
+          <label>First Name</label>
+          <input type="text" id="fname">
+        </div>
+        <div class="form-group">
+          <label>Last Name</label>
+          <input type="text" id="lname">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Phone</label>
+          <input type="tel" placeholder="+91 9XXXXXXXX" id="phone">
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" placeholder="email.com" id="email">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>City</label>
+        <select id="city">
+          <option>None</option>
+          <option>Hyderabad</option>
+          <option>Mumbai</option>
+          <option>Bangalore</option>
+          <option>Delhi</option>
+          <option>Chennai</option>
+          <option>Pune</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+    <label>Interested In</label>
+    <select id="interest">
+      <option selected>None</option>
+      <option>Buying a New Car</option>
+      <option>Buying a Used Car</option>
+      <option>Car Modification</option>
+      <option>Book Test Drive</option>
+      <option>EMI / Finance</option>
+    </select>
+</div>
+      <div class="form-group">
+        <label>Message</label>
+        <textarea placeholder="Tell us about your requirements…" id="message"></textarea>
+      </div>
+      <button class="submit-btn" onclick="submitForm()">Send Enquiry →</button>
+      <div class="form-success" id="formSuccess">✅ Thank you! We'll call you within 2 hours.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CHATBOT -->
+<div class="chat-toggle" onclick="toggleChat()">💬 Support</div>
+<div class="chat-container" id="chatContainer">
+  <div class="chat-header">
+    <strong>AutoIndia AI Assistant</strong>
+    <button onclick="toggleChat()">×</button>
+  </div>
+  <div class="chat-box" id="chatBox">
+    <div class="chat-msg bot">Hello! I'm your AutoIndia assistant. How can I help you today?</div>
+  </div>
+  <div class="chat-input-area">
+    <input type="text" id="chatInput" placeholder="Type a message..." onkeypress="handleChatKey(event)">
+    <button onclick="sendChatMessage()">Send</button>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="index.html" class="nav-logo">AUTO<span>INDIA</span></a>
+      <p>India's most trusted multi-brand car dealership.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="inventory.html">All Cars</a></li>
+        <li><a href="new-cars.html">New Cars</a></li>
+        <li><a href="used-cars.html">Used Cars</a></li>
+        <li><a href="emi.html">EMI Calculator</a></li>
+        <li><a href="contact.html">Book Test Drive</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Brands</h4>
+      <ul>
+        <li><a href="#">Tata Motors</a></li>
+        <li><a href="#">Mahindra</a></li>
+        <li><a href="#">Hyundai India</a></li>
+        <li><a href="#">Kia India</a></li>
+        <li><a href="#">Ford India</a></li>
+        <li><a href="#">Maruti Suzuki</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#">Car Financing</a></li>
+        <li><a href="#">Insurance</a></li>
+        <li><a href="#">Car Service</a></li>
+        <li><a href="#">Modification Shop</a></li>
+        <li><a href="#">Home Delivery</a></li>
+        <li><a href="#">RTO Assistance</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 AutoIndia Motors Pvt. Ltd.</p>
+    <div class="social-links">
+      <a href="#" class="social-link">📘</a>
+      <a href="#" class="social-link">📸</a>
+      <a href="#" class="social-link">🐦</a>
+      <a href="#" class="social-link">▶️</a>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/918121370732?text=Hi%20AutoIndia%20Motors!%20I%20am%20interested%20in%20a%20car." target="_blank" class="whatsapp-float">💬</a>
+<button id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<div class="toast" id="toast"></div>
+
+<script src="script.js"></script>
+</body>
+</html>

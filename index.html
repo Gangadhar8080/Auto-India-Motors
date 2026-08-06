@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoIndia Motors – Premium Car Dealership</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body class="light-mode">
+  <!-- PREVENT WHITE FLASH -->
+  <script>
+    if (localStorage.getItem('autoindia_theme') === 'dark') {
+      document.body.classList.remove('light-mode');
+      document.body.classList.add('dark-mode');
+    }
+  </script>
+
+  <!-- PRELOADER OVERLAY -->
+  <div id="preloader" style="position: fixed; inset: 0; background: #121212; z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #fff; font-family: 'Rajdhani', sans-serif; transition: opacity 0.5s ease;">
+    <div style="font-size: 24px; font-weight: 700; letter-spacing: 3px; color: #ff4724; margin-bottom: 20px;">AUTO INDIA MOTORS</div>
+    <div class="spinner" style="width: 50px; height: 50px; border: 3px solid rgba(255,255,255,0.1); border-top: 3px solid #ff4724; border-radius: 50%; animation: spin 1s linear infinite; margin-bottom: 16px;"></div>
+    <div style="font-size: 13px; letter-spacing: 1px; color: rgba(255,255,255,0.7); font-family: 'Nunito', sans-serif;">LOADING PREMIUM EXPERIENCE...</div>
+  </div>
+
+  <style>
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+
+  <!-- TOP NAVIGATION BAR -->
+  <nav id="navbar" style="display: flex; align-items: center; justify-content: space-between; padding: 0 4%; height: 70px; background: #fff; border-bottom: 1px solid var(--border); position: fixed; top: 0; width: 100%; z-index: 1000;">
+    <div style="display: flex; align-items: center; gap: 40px;">
+      <a href="index.html" class="nav-logo" style="display: flex; align-items: center; gap: 8px; text-decoration: none;">
+        <div style="background: #ff4724; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700;">A</div>
+        <span style="font-family: 'Rajdhani', sans-serif; font-size: 24px; font-weight: 700; color: #212529; letter-spacing: 2px;">AutoIndia</span>
+      </a>
+    </div>
+
+    <div style="display: flex; align-items: center; border: 1px solid #ced4da; border-radius: 30px; overflow: hidden; background: #fff; width: 450px;">
+      <select style="border: none; background: transparent; padding: 10px 14px; font-size: 13px; color: #495057; outline: none; border-right: 1px solid #ced4da; cursor: pointer;">
+        <option>All</option>
+        <option>New Cars</option>
+        <option>Used Cars</option>
+      </select>
+      <div style="display: flex; align-items: center; padding: 0 12px; flex: 1;">
+        <span style="color: #6c757d; margin-right: 8px; font-size: 14px;">🔍</span>
+        <input type="text" placeholder="Search or Ask a Question" onkeypress="handleNavSearch(event)" style="border: none; outline: none; width: 100%; font-size: 13px; background: transparent; color: inherit;">
+      </div>
+    </div>
+
+    <div style="display: flex; align-items: center; gap: 24px; font-size: 13px; color: #495057; font-weight: 600;">
+      
+      <span style="cursor: pointer; font-size: 16px;"></span>
+      
+      <!-- ACCOUNT DROPDOWN CONTAINER -->
+      <div class="account-dropdown-wrapper" style="position: relative; display: inline-block;">
+        <a href="#" id="accountMenuBtn" onclick="toggleAccountMenu(event)" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 6px; cursor: pointer;">
+          <span style="font-size: 18px;">👤</span> <span id="accountLabel"></span>
+        </a>
+
+        <div id="accountDropdown" style="display: none; position: absolute; right: 0; top: 40px; background: #ffffff; color: #212529; width: 260px; border-radius: 10px; box-shadow: 0 10px 25px rgba(0,0,0,0.15); border: 1px solid #ced4da; z-index: 1100; overflow: hidden; font-family: 'Nunito', sans-serif;">
+          <div id="userInfoSection" style="padding: 16px; background: #f8f9fa; border-bottom: 1px solid #ced4da;">
+            <div style="font-weight: 700; font-size: 14px; color: #212529;" id="profileName">Ramya</div>
+            <div style="font-size: 12px; color: #6c757d; margin-top: 2px;" id="profileEmail">ramya@autoindia.in</div>
+            <div style="font-size: 12px; color: #6c757d; margin-top: 2px;" id="profileContact">+91 9550553729</div>
+            <div style="font-size: 11px; color: #ff4724; font-weight: 600; margin-top: 4px; text-transform: uppercase;" id="profileGender">Female</div>
+          </div>
+          <div style="padding: 8px 0;">
+            <a href="user-dashboard.html" style="display: block; padding: 10px 16px; color: #212529; text-decoration: none; font-size: 13px; font-weight: 600;" onmouseover="this.style.background='#f1f3f5'" onmouseout="this.style.background='transparent'">⚙️ My Dashboard</a>
+            <a href="#" onclick="openProfileModal(event)" style="display: block; padding: 10px 16px; color: #212529; text-decoration: none; font-size: 13px; font-weight: 600;" onmouseover="this.style.background='#f1f3f5'" onmouseout="this.style.background='transparent'">👤 Edit Profile</a>
+            <div style="height: 1px; background: #ced4da; margin: 4px 0;"></div>
+            <button onclick="handleLogout()" style="width: 100%; text-align: left; background: transparent; border: none; padding: 10px 16px; color: #dc3545; font-size: 13px; font-weight: 700; cursor: pointer;" onmouseover="this.style.background='#fff5f5'" onmouseout="this.style.background='transparent'">🚪 Log Out</button>
+          </div>
+        </div>
+      </div>
+      
+      <div style="display: flex; align-items: center; gap: 4px;">
+        <span style="font-size: 14px;">📍</span>
+        <select style="border: none; background: transparent; font-size: 13px; font-weight: 600; color: #6c757d; outline: none; cursor: pointer; padding-right: 4px;">
+          <option value="" selected disabled>Select City</option>
+          <option value="hyderabad">Hyderabad</option>
+          <option value="mumbai">Mumbai</option>
+          <option value="bangalore">Bangalore</option>
+          <option value="delhi">New Delhi</option>
+          <option value="chennai">Chennai</option>
+          <option value="pune">Pune</option>
+          <option value="kolkata">Kolkata</option>
+          <option value="ahmedabad">Ahmedabad</option>
+          <option value="jaipur">Jaipur</option>
+          <option value="surat">Surat</option>
+        </select>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section id="hero" style="padding-top: 110px; position: relative; min-height: auto; padding-bottom: 80px; display: flex; align-items: center; background-image: url('images/thar-roxx.jpg.webp'); background-size: cover; background-position: center;">
+    <div style="position: absolute; inset: 0; background: rgba(0,0,0,0.45);"></div>
+
+    <div style="position: relative; z-index: 2; width: 100%; max-width: 1300px; margin: 0 auto; display: flex; align-items: center; gap: 40px; padding: 0 20px;">
+      
+      <div style="background: #ffffff; border-radius: 12px; padding: 24px; width: 380px; box-shadow: 0 20px 40px rgba(0,0,0,0.2); color: #212529;">
+        <h2 style="font-family: 'Rajdhani', sans-serif; font-size: 26px; font-weight: 700; margin-bottom: 16px; color: #212529;">Find your right car</h2>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 16px; background: #f1f3f5; padding: 4px; border-radius: 8px;">
+          <button onclick="setSearchTab('New')" id="tabNew" style="padding: 10px; background: #212529; color: #fff; border: none; border-radius: 6px; font-weight: 700; cursor: pointer; font-size: 13px; transition: 0.2s;">New Car</button>
+          <button onclick="setSearchTab('Used')" id="tabUsed" style="padding: 10px; background: transparent; color: #6c757d; border: none; border-radius: 6px; font-weight: 700; cursor: pointer; font-size: 13px; transition: 0.2s;">Used Car</button>
+        </div>
+
+        <div style="display: flex; gap: 20px; font-size: 13px; margin-bottom: 16px; color: #495057;">
+          <label style="cursor: pointer;">
+            <input type="radio" name="searchFilter" checked style="accent-color: #ff4724;" onchange="toggleFilterDropdown('budget')"> By Budget
+          </label>
+          <label style="cursor: pointer;">
+            <input type="radio" name="searchFilter" style="accent-color: #ff4724;" onchange="toggleFilterDropdown('brand')"> By Brand
+          </label>
+        </div>
+
+        <div id="filterBudgetBox" style="margin-bottom: 12px;">
+          <select style="width: 100%; padding: 12px; background: #f8f9fa; border: 1px solid #ced4da; border-radius: 6px; color: #495057; font-size: 13px; outline: none;">
+            <option>Select Budget</option>
+            <option>Under ₹5 Lakh</option>
+            <option>₹5 - ₹10 Lakh</option>
+            <option>₹10 - ₹20 Lakh</option>
+            <option>Above ₹20 Lakh</option>
+          </select>
+        </div>
+
+        <div id="filterBrandBox" style="margin-bottom: 12px; display: none;">
+          <select style="width: 100%; padding: 12px; background: #f8f9fa; border: 1px solid #ced4da; border-radius: 6px; color: #495057; font-size: 13px; outline: none;">
+            <option>Select Brand</option>
+            <option>Tata</option>
+            <option>Mahindra</option>
+            <option>Hyundai</option>
+            <option>Kia</option>
+            <option>Maruti Suzuki</option>
+            <option>Ford</option>
+          </select>
+        </div>
+
+        <div style="margin-bottom: 20px;">
+          <select style="width: 100%; padding: 12px; background: #f8f9fa; border: 1px solid #ced4da; border-radius: 6px; color: #495057; font-size: 13px; outline: none;">
+            <option>All Vehicle Types</option>
+            <option>SUV</option>
+            <option>Sedan</option>
+            <option>Hatchback</option>
+            <option>EV</option>
+          </select>
+        </div>
+
+        <button class="btn-primary" onclick="handleSearchRedirect()" style="width: 100%; background: #ff4724; padding: 14px; border-radius: 6px; font-weight: 700; color: #fff; border: none; cursor: pointer; font-size: 15px; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px;">Search</button>
+        
+        <div style="text-align: right;">
+          <a href="inventory.html" style="font-size: 12px; color: #6c757d; text-decoration: none; font-weight: 600;">Advanced Search →</a>
+        </div>
+      </div>
+
+      <div style="color: #fff; flex: 1; padding-left: 20px;">
+        <span style="background: #ff4724; color: #fff; font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 4px; text-transform: uppercase; letter-spacing: 1px;">Driven</span>
+        <h1 style="font-family: 'Rajdhani', sans-serif; font-size: 54px; font-weight: 700; line-height: 1.1; margin: 10px 0;">2026 Mahindra Roxx</h1>
+        <p style="font-size: 15px; color: rgba(255,255,255,0.9); margin-bottom: 20px;">Imposing Pickup With Slight Improvements</p>
+        <button class="btn-outline" style="color: #fff; border-color: rgba(255,255,255,0.8); background: rgba(0,0,0,0.3); padding: 10px 24px; border-radius: 4px; font-weight: 700; cursor: pointer;">Know More</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEW LAUNCHED CARS SECTION -->
+  <section style="padding: 60px 5%; background: var(--bg, #f8f9fa); font-family: 'Nunito', sans-serif;">
+    <div style="max-width: 1300px; margin: 0 auto;">
+      
+      <!-- SECTION HEADER -->
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+        <div>
+          <span style="color: #ff4724; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">Freshly Arrived</span>
+          <h2 style="font-family: 'Rajdhani', sans-serif; font-size: 32px; font-weight: 700; color: #212529; margin: 0;">Newly Launched Cars</h2>
+        </div>
+        <a href="new-cars.html" style="color: #ff4724; font-weight: 700; text-decoration: none; font-size: 14px;">View All New Cars →</a>
+      </div>
+
+      <!-- CARS GRID -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">
+        
+        <!-- CAR CARD 1 -->
+        <div style="background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.06); border: 1px solid #eaeaea; transition: transform 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+          <img src="images/thar-roxx.jpg.webp" alt="Mahindra Roxx" style="width: 100%; height: 180px; object-fit: cover;">
+          <div style="padding: 20px;">
+            <span style="background: #e6fcf5; color: #0ca678; font-size: 10px; font-weight: 700; padding: 4px 8px; border-radius: 4px; text-transform: uppercase;">Just Launched</span>
+            <h3 style="font-family: 'Rajdhani', sans-serif; font-size: 20px; font-weight: 700; margin: 10px 0 6px 0; color: #212529;">Mahindra Thar Roxx</h3>
+            <p style="font-size: 13px; color: #6c757d; margin-bottom: 14px;">Starts from ₹ 12.99 Lakh*</p>
+            <a href="contact.html" style="display: block; text-align: center; background: #ff4724; color: #fff; padding: 10px; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 12px; text-transform: uppercase;">Book Test Drive</a>
+          </div>
+        </div>
+
+        <!-- CAR CARD 2 -->
+        <div style="background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.06); border: 1px solid #eaeaea; transition: transform 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+          <img src="images/creta-nline.jpg.avif" alt="Hyundai Creta Facelift" style="width: 100%; height: 180px; object-fit: cover;" onerror="this.src='images/thar-roxx.jpg.webp'">
+          <div style="padding: 20px;">
+            <span style="background: #e6fcf5; color: #0ca678; font-size: 10px; font-weight: 700; padding: 4px 8px; border-radius: 4px; text-transform: uppercase;">Just Launched</span>
+            <h3 style="font-family: 'Rajdhani', sans-serif; font-size: 20px; font-weight: 700; margin: 10px 0 6px 0; color: #212529;">Hyundai Creta Facelift</h3>
+            <p style="font-size: 13px; color: #6c757d; margin-bottom: 14px;">Starts from ₹ 11.00 Lakh*</p>
+            <a href="contact.html" style="display: block; text-align: center; background: #ff4724; color: #fff; padding: 10px; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 12px; text-transform: uppercase;">Book Test Drive</a>
+          </div>
+        </div>
+
+        <!-- CAR CARD 3 -->
+        <div style="background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.06); border: 1px solid #eaeaea; transition: transform 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+          <img src="images/curvv.jpg" alt="Tata Curvv EV" style="width: 100%; height: 180px; object-fit: cover;" onerror="this.src='images/thar-roxx.jpg.webp'">
+          <div style="padding: 20px;">
+            <span style="background: #e6fcf5; color: #0ca678; font-size: 10px; font-weight: 700; padding: 4px 8px; border-radius: 4px; text-transform: uppercase;">New EV</span>
+            <h3 style="font-family: 'Rajdhani', sans-serif; font-size: 20px; font-weight: 700; margin: 10px 0 6px 0; color: #212529;">Tata Curvv EV</h3>
+            <p style="font-size: 13px; color: #6c757d; margin-bottom: 14px;">Starts from ₹ 17.49 Lakh*</p>
+            <a href="contact.html" style="display: block; text-align: center; background: #ff4724; color: #fff; padding: 10px; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 12px; text-transform: uppercase;">Book Test Drive</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- EDIT PROFILE MODAL -->
+  <div id="profileModal" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 2000; align-items: center; justify-content: center;">
+    <div style="background: #fff; padding: 30px; border-radius: 12px; width: 100%; max-width: 450px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); position: relative; font-family: 'Nunito', sans-serif; color: #212529;">
+      <h3 style="font-family: 'Rajdhani', sans-serif; margin-bottom: 20px; color: #212529; font-size: 22px;">Edit Profile</h3>
+      
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <label style="font-weight: 600; font-size: 13px;">Full Name</label>
+        <input type="text" id="modalEditName" style="padding: 10px; border: 1px solid #ced4da; border-radius: 6px; font-size: 13px;">
+        
+        <label style="font-weight: 600; font-size: 13px;">Email Address</label>
+        <input type="email" id="modalEditEmail" style="padding: 10px; border: 1px solid #ced4da; border-radius: 6px; font-size: 13px;">
+        
+        <label style="font-weight: 600; font-size: 13px;">Contact Number</label>
+        <input type="text" id="modalEditPhone" style="padding: 10px; border: 1px solid #ced4da; border-radius: 6px; font-size: 13px;">
+
+        <label style="font-weight: 600; font-size: 13px;">State / Region</label>
+        <select id="modalEditState" style="padding: 10px; border: 1px solid #ced4da; border-radius: 6px; font-size: 13px; background: #fff;">
+          <option value="" disabled selected>Select State</option>
+          <option value="Telangana">Telangana</option>
+          <option value="Maharashtra">Maharashtra</option>
+          <option value="Karnataka">Karnataka</option>
+          <option value="Delhi">Delhi</option>
+          <option value="Tamil Nadu">Tamil Nadu</option>
+          <option value="Gujarat">Gujarat</option>
+          <option value="Uttar Pradesh">Uttar Pradesh</option>
+          <option value="Andhra Pradesh">Andhra Pradesh</option>
+        </select>
+        
+        <div style="display: flex; gap: 10px; margin-top: 10px;">
+          <button onclick="saveProfileChanges()" style="flex: 1; background: #ff4724; color: #fff; padding: 12px; border: none; border-radius: 6px; font-weight: 700; cursor: pointer;">Save Changes</button>
+          <button onclick="closeProfileModal()" style="flex: 1; background: #6c757d; color: #fff; padding: 12px; border: none; border-radius: 6px; font-weight: 700; cursor: pointer;">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    // 3-second preloader timer
+    setTimeout(() => {
+      hidePreloader();
+    }, 2000);
+
+    function hidePreloader() {
+      const preloader = document.getElementById('preloader');
+      if (preloader && preloader.style.display !== 'none') {
+        preloader.style.opacity = '0';
+        setTimeout(() => {
+          preloader.style.display = 'none';
+        }, 500);
+      }
+      if (typeof renderCars === 'function') {
+        renderCars('All');
+      }
+    }
+
+    // Tab Switching for New Car vs Used Car
+    function setSearchTab(type) {
+      const tabNew = document.getElementById('tabNew');
+      const tabUsed = document.getElementById('tabUsed');
+
+      if (type === 'New') {
+        tabNew.style.background = '#212529';
+        tabNew.style.color = '#fff';
+        tabUsed.style.background = 'transparent';
+        tabUsed.style.color = '#6c757d';
+      } else {
+        tabUsed.style.background = '#212529';
+        tabUsed.style.color = '#fff';
+        tabNew.style.background = 'transparent';
+        tabNew.style.color = '#6c757d';
+      }
+    }
+
+    // Toggle filter dropdown between Budget and Brand
+    function toggleFilterDropdown(filterType) {
+      const budgetBox = document.getElementById('filterBudgetBox');
+      const brandBox = document.getElementById('filterBrandBox');
+
+      if (filterType === 'budget') {
+        budgetBox.style.display = 'block';
+        brandBox.style.display = 'none';
+      } else {
+        budgetBox.style.display = 'none';
+        brandBox.style.display = 'block';
+      }
+    }
+
+    function handleSearchRedirect() {
+      const isUsed = document.getElementById('tabUsed') && document.getElementById('tabUsed').style.background !== 'transparent';
+      const condition = isUsed ? 'Used' : 'New';
+
+      const selectElements = document.querySelectorAll('#hero select');
+      
+      let vehicleType = '';
+      let budget = '';
+      let brand = '';
+
+      selectElements.forEach(sel => {
+        const val = sel.value;
+        if (!val || val.includes('Select') || val.includes('All')) return;
+
+        if (val === 'SUV' || val === 'Sedan' || val === 'Hatchback' || val === 'EV') {
+          vehicleType = val;
+        } else if (val.includes('Lakh') || val.includes('₹')) {
+          budget = val;
+        } else {
+          brand = val;
+        }
+      });
+
+      const params = new URLSearchParams();
+      if (condition) params.append('condition', condition);
+      if (vehicleType) params.append('type', vehicleType);
+      if (budget) params.append('budget', budget);
+      if (brand) params.append('brand', brand);
+
+      window.location.href = `inventory.html?${params.toString()}`;
+    }
+
+    function toggleAccountMenu(event) {
+      event.preventDefault();
+      const isLoggedIn = localStorage.getItem('autoindia_user') || sessionStorage.getItem('autoindia_user');
+      if (!isLoggedIn) {
+        window.location.href = 'login.html';
+        return;
+      }
+      const dropdown = document.getElementById('accountDropdown');
+      dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    }
+
+    window.addEventListener('click', function(e) {
+      const container = document.querySelector('.account-dropdown-wrapper');
+      if (container && !container.contains(e.target)) {
+        const dropdown = document.getElementById('accountDropdown');
+        if (dropdown) dropdown.style.display = 'none';
+      }
+    });
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const isLoggedIn = localStorage.getItem('autoindia_user') || sessionStorage.getItem('autoindia_user');
+      const accountLabel = document.getElementById('accountLabel');
+      const userInfoSection = document.getElementById('userInfoSection');
+
+      if (isLoggedIn) {
+        if (accountLabel) accountLabel.innerText = 'My Account';
+        document.getElementById('profileName').innerText = localStorage.getItem('user_name') || 'Ramya';
+        document.getElementById('profileEmail').innerText = localStorage.getItem('user_email') || 'ramya@autoindia.in';
+        document.getElementById('profileContact').innerText = localStorage.getItem('user_contact') || '+91 9550553729';
+        document.getElementById('profileGender').innerText = localStorage.getItem('user_gender') || 'Female';
+      } else {
+        if (userInfoSection) userInfoSection.style.display = 'none';
+        if (accountLabel) accountLabel.innerText = 'Login';
+      }
+    });
+
+    function handleLogout() {
+      localStorage.removeItem('autoindia_user');
+      sessionStorage.removeItem('autoindia_user');
+      window.location.href = 'index.html';
+    }
+
+    // Modal Profile Editor Functions connected to backend and database
+    function openProfileModal(event) {
+      event.preventDefault();
+      document.getElementById('accountDropdown').style.display = 'none';
+      
+      document.getElementById('modalEditName').value = localStorage.getItem('user_name') || 'Ramya';
+      document.getElementById('modalEditEmail').value = localStorage.getItem('user_email') || 'ramya@autoindia.in';
+      document.getElementById('modalEditPhone').value = localStorage.getItem('user_contact') || '+91 9550553729';
+      document.getElementById('modalEditState').value = localStorage.getItem('user_state') || 'Telangana';
+
+      document.getElementById('profileModal').style.display = 'flex';
+    }
+
+    function closeProfileModal() {
+      document.getElementById('profileModal').style.display = 'none';
+    }
+
+    async function saveProfileChanges() {
+      const name = document.getElementById('modalEditName').value.trim();
+      const email = document.getElementById('modalEditEmail').value.trim();
+      const contact = document.getElementById('modalEditPhone').value.trim();
+      const state = document.getElementById('modalEditState').value;
+      const token = localStorage.getItem('autoIndiaToken');
+
+      if (!token) {
+        alert('⚠️ Please log in again to update your profile.');
+        window.location.href = 'login.html';
+        return;
+      }
+
+      try {
+        const response = await fetch('http://localhost:5000/api/auth/profile', {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          },
+          body: JSON.stringify({ name, email, contact, state })
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          localStorage.setItem('user_name', data.user.name);
+          localStorage.setItem('user_email', data.user.email);
+          localStorage.setItem('user_contact', data.user.contact);
+          localStorage.setItem('user_state', data.user.state || state);
+
+          document.getElementById('profileName').innerText = data.user.name;
+          document.getElementById('profileEmail').innerText = data.user.email;
+          document.getElementById('profileContact').innerText = data.user.contact;
+
+          alert('✅ Profile updated successfully in database!');
+          closeProfileModal();
+        } else {
+          alert('⚠️ ' + data.message);
+        }
+      } catch (err) {
+        alert('❌ Server Error. Could not connect to backend.');
+      }
+    }
+  </script>
+</body>
+</html>

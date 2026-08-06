@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - AutoIndia Motors</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="car-image-patch.css">
+</head>
+<body style="background: var(--bg); color: var(--text);">
+
+<section style="padding: 80px 20px; max-width: 420px; margin: 0 auto;">
+  <div style="background: var(--card); border: 1px solid var(--border); padding: 40px; border-radius: 12px;">
+    <div class="section-tag" style="text-align: center;">Registration Portal</div>
+    <h2 style="font-family: 'Rajdhani', sans-serif; font-size: 28px; margin-bottom: 20px; color: var(--gold); text-align: center;">Sign Up</h2>
+
+    <!-- STEP 1: MOBILE NUMBER -->
+    <div id="stepMobile">
+      <div style="margin-bottom: 20px;">
+        <label style="font-size: 13px; color: var(--muted); display: block; margin-bottom: 6px;">Mobile Number</label>
+        <input type="tel" id="regMobile" placeholder="Enter 10-digit mobile number" style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 6px; color: #fff;">
+      </div>
+      <button class="btn-primary" onclick="sendOTP()" style="width: 100%;">Send OTP</button>
+    </div>
+
+    <!-- STEP 2: OTP VERIFICATION -->
+    <div id="stepOtp" style="display: none;">
+      <p style="font-size: 13px; color: var(--muted); margin-bottom: 15px; text-align: center;">Enter OTP sent to your mobile (Demo: 1234)</p>
+      <div style="margin-bottom: 20px;">
+        <input type="text" id="regOtp" placeholder="1234" style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 6px; color: #fff; text-align: center; letter-spacing: 4px; font-size: 18px;">
+      </div>
+      <button class="btn-primary" onclick="verifyOTP()" style="width: 100%;">Verify OTP</button>
+    </div>
+
+    <!-- STEP 3: NAME & ACCOUNT CREATION -->
+    <div id="stepDetails" style="display: none;">
+      <div style="margin-bottom: 15px;">
+        <label style="font-size: 13px; color: var(--muted); display: block; margin-bottom: 6px;">Full Name</label>
+        <input type="text" id="regName" placeholder="Enter your name" style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 6px; color: #fff;">
+      </div>
+      <div style="margin-bottom: 15px;">
+        <label style="font-size: 13px; color: var(--muted); display: block; margin-bottom: 6px;">Username</label>
+        <input type="text" id="regUser" placeholder="Choose username" style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 6px; color: #fff;">
+      </div>
+      <div style="margin-bottom: 20px;">
+        <label style="font-size: 13px; color: var(--muted); display: block; margin-bottom: 6px;">Password</label>
+        <input type="password" id="regPass" placeholder="Choose password" style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 6px; color: #fff;">
+      </div>
+      <button class="btn-primary" onclick="completeRegistration()" style="width: 100%;">Complete Registration</button>
+    </div>
+
+    <div style="margin-top: 20px; text-align: center; font-size: 13px; color: var(--muted);">
+      Already have an account? <a href="login.html" style="color: var(--gold);">Login</a>
+    </div>
+  </div>
+</section>
+
+<div class="toast" id="toast"></div>
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard - AutoIndia Motors</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body style="background: var(--bg); color: var(--text);">
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">AUTO<span>INDIA</span></a>
+  <ul class="nav-links">
+    <li><a href="user-dashboard.html" class="active">My Dashboard</a></li>
+    <li><a href="new-cars.html">New Cars</a></li>
+    <li><a href="used-cars.html">Used Cars</a></li>
+    <li><a href="emi.html">EMI Calculator</a></li>
+  </ul>
+  <div class="nav-right-controls" style="display: flex; align-items: center; gap: 16px;">
+    <button class="btn-outline" onclick="userLogout()" style="padding: 6px 16px; font-size: 13px;">🚪 Log Out</button>
+  </div>
+</nav>
+
+<!-- DASHBOARD CONTENT -->
+<section style="padding: 50px 20px; max-width: 1200px; margin: 0 auto;">
+  <div class="section-header reveal">
+    <div class="section-tag">Client Portal</div>
+    <h2 class="section-title" id="welcomeUserMsg">Welcome, Valued Customer!</h2>
+    <p class="section-sub">Browse our verified catalog of brand new models and certified pre-owned vehicles</p>
+    <div class="divider"></div>
+  </div>
+
+  <!-- QUICK FILTERS -->
+  <div style="display: flex; gap: 15px; margin-bottom: 30px; justify-content: center;">
+    <button class="btn-primary" onclick="renderCars('All')" style="padding: 10px 20px;">All Inventory</button>
+    <a href="new-cars.html" class="btn-outline" style="padding: 10px 20px;">Browse New Cars</a>
+    <a href="used-cars.html" class="btn-outline" style="padding: 10px 20px;">Browse Used Cars</a>
+  </div>
+
+  <!-- INVENTORY GRID -->
+  <div class="inventory-grid" id="inventoryGrid"></div>
+</section>
+
+<!-- CAR DETAIL MODAL -->
+<div class="modal-overlay" id="carModal">
+  <div class="modal" id="modalContent">
+    <div class="modal-header">
+      <div>
+        <div id="modalBrand" style="font-size:12px;color:var(--red);font-weight:700;letter-spacing:2px;text-transform:uppercase"></div>
+        <div class="modal-title" id="modalName"></div>
+      </div>
+      <button class="modal-close" onclick="closeModal()">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-grid" id="modalStats"></div>
+      <div style="margin-top:16px">
+        <h3 style="font-family:Rajdhani,sans-serif;font-size:20px;margin-bottom:12px;color:var(--gold)">💰 Price Breakdown</h3>
+        <div class="modal-grid" id="modalPricing"></div>
+      </div>
+      <a href="contact.html" class="btn-primary" style="width:100%;margin-top:20px;text-align:center;display:block;">Book This Car →</a>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+<script src="script.js"></script>
+<script>
+  // Display personalized name if logged in
+  window.addEventListener('DOMContentLoaded', () => {
+    const savedName = localStorage.getItem('autoIndiaUserName');
+    if (savedName && document.getElementById('welcomeUserMsg')) {
+      document.getElementById('welcomeUserMsg').textContent = `Welcome, ${savedName}!`;
+    }
+  });
+
+  function userLogout() {
+    localStorage.removeItem('autoIndiaUserLoggedIn');
+    localStorage.removeItem('autoIndiaUserName');
+    showToast('🔒 Logged out successfully.');
+    setTimeout(() => { window.location.href = 'index.html'; }, 1000);
+  }
+</script>
+</body>
+</html>

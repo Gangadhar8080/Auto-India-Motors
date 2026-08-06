@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Showrooms - AutoIndia Motors</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="car-image-patch.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">AUTO<span>INDIA</span></a>
+  <ul class="nav-links">
+    <li><a href="inventory.html">Inventory</a></li>
+    <li><a href="parts.html">Spare Parts</a></li>
+    <li><a href="showrooms.html" class="active">Showrooms</a></li>
+    <li><a href="reviews.html">Reviews</a></li>
+    <li><a href="modifications.html">Mods Guide</a></li>
+    <li><a href="emi.html">EMI</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="login.html">Login / Register</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">Book Test Drive</a>
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- LOCATION / SHOWROOMS -->
+<section id="location">
+  <div class="section-header reveal">
+    <div class="section-tag">Find Us</div>
+    <h2 class="section-title">Nearby Showrooms</h2>
+    <p class="section-sub">8 showrooms across Hyderabad, Mumbai, Bangalore & Delhi</p>
+    <div class="divider"></div>
+  </div>
+  <div class="location-grid">
+    <div class="showroom-card reveal">
+      <div class="showroom-map-preview"><div class="map-dots">🗺️</div><div class="map-pin">📍</div></div>
+      <div class="showroom-info">
+        <div class="showroom-name">AutoIndia Hyderabad Central</div>
+        <div class="showroom-addr">Plot 45, Banjara Hills Road No. 10,<br>Hyderabad, Telangana 500034</div>
+        <div class="showroom-meta">
+          <span class="showroom-badge">⭐ 4.9 Rating</span>
+          <span class="showroom-badge">Flagship Store</span>
+        </div>
+        <div style="font-size:13px;color:var(--muted);margin-top:8px">Mon–Sun: 9:00 AM – 8:00 PM<br>📞 +91 40 2345 6789</div>
+        <a href="https://maps.google.com/?q=Banjara+Hills+Hyderabad" target="_blank" class="btn-directions">📍 Get Directions</a>
+      </div>
+    </div>
+    <div class="showroom-card reveal">
+      <div class="showroom-map-preview"><div class="map-dots">🗺️</div><div class="map-pin">📍</div></div>
+      <div class="showroom-info">
+        <div class="showroom-name">AutoIndia Mumbai West</div>
+        <div class="showroom-addr">Shop 12, Linking Road, Bandra West,<br>Mumbai, Maharashtra 400050</div>
+        <div class="showroom-meta">
+          <span class="showroom-badge">⭐ 4.8 Rating</span>
+          <span class="showroom-badge">EV Specialist</span>
+        </div>
+        <div style="font-size:13px;color:var(--muted);margin-top:8px">Mon–Sat: 10:00 AM – 7:30 PM<br>📞 +91 22 6789 0123</div>
+        <a href="https://maps.google.com/?q=Bandra+West+Mumbai" target="_blank" class="btn-directions">📍 Get Directions</a>
+      </div>
+    </div>
+    <div class="showroom-card reveal">
+      <div class="showroom-map-preview"><div class="map-dots">🗺️</div><div class="map-pin">📍</div></div>
+      <div class="showroom-info">
+        <div class="showroom-name">AutoIndia Bangalore Koramangala</div>
+        <div class="showroom-addr">No. 77, 5th Block, Koramangala,<br>Bengaluru, Karnataka 560095</div>
+        <div class="showroom-meta">
+          <span class="showroom-badge">⭐ 4.7 Rating</span>
+          <span class="showroom-badge">SUV Hub</span>
+        </div>
+        <div style="font-size:13px;color:var(--muted);margin-top:8px">Mon–Sun: 9:30 AM – 8:00 PM<br>📞 +91 80 4567 8901</div>
+        <a href="https://maps.google.com/?q=Koramangala+Bangalore" target="_blank" class="btn-directions">📍 Get Directions</a>
+      </div>
+    </div>
+    <div class="showroom-card reveal">
+      <div class="showroom-map-preview"><div class="map-dots">🗺️</div><div class="map-pin">📍</div></div>
+      <div class="showroom-info">
+        <div class="showroom-name">AutoIndia Delhi South Ex</div>
+        <div class="showroom-addr">F-14, South Extension Part II,<br>New Delhi 110049</div>
+        <div class="showroom-meta">
+          <span class="showroom-badge">⭐ 4.9 Rating</span>
+          <span class="showroom-badge">Luxury Cars</span>
+        </div>
+        <div style="font-size:13px;color:var(--muted);margin-top:8px">Mon–Sat: 9:00 AM – 7:00 PM<br>📞 +91 11 2345 6789</div>
+        <a href="https://maps.google.com/?q=South+Extension+New+Delhi" target="_blank" class="btn-directions">📍 Get Directions</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHATBOT -->
+<div class="chat-toggle" onclick="toggleChat()">💬 Support</div>
+<div class="chat-container" id="chatContainer">
+  <div class="chat-header">
+    <strong>AutoIndia AI Assistant</strong>
+    <button onclick="toggleChat()">×</button>
+  </div>
+  <div class="chat-box" id="chatBox">
+    <div class="chat-msg bot">Hello! I'm your AutoIndia assistant. How can I help you today?</div>
+  </div>
+  <div class="chat-input-area">
+    <input type="text" id="chatInput" placeholder="Type a message..." onkeypress="handleChatKey(event)">
+    <button onclick="sendChatMessage()">Send</button>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="index.html" class="nav-logo">AUTO<span>INDIA</span></a>
+      <p>India's most trusted multi-brand car dealership. New cars, used cars, spare parts, modifications — all under one roof since 2008.</p>
+      <div style="margin-top:16px;font-size:13px;color:var(--muted)">
+        <div>📞 +91 9550553729</div>
+        <div>📧 info@autoindiamotors.in</div>
+        <div>📍 Hyderabad | Mumbai | Bangalore | Delhi</div>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="inventory.html">Inventory</a></li>
+        <li><a href="parts.html">Spare Parts</a></li>
+        <li><a href="showrooms.html">Showrooms</a></li>
+        <li><a href="emi.html">EMI Calculator</a></li>
+        <li><a href="contact.html">Book Test Drive</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Brands</h4>
+      <ul>
+        <li><a href="#">Tata Motors</a></li>
+        <li><a href="#">Mahindra</a></li>
+        <li><a href="#">Hyundai India</a></li>
+        <li><a href="#">Kia India</a></li>
+        <li><a href="#">Ford India</a></li>
+        <li><a href="#">Maruti Suzuki</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#">Car Financing</a></li>
+        <li><a href="#">Insurance</a></li>
+        <li><a href="#">Car Service</a></li>
+        <li><a href="#">Modification Shop</a></li>
+        <li><a href="#">Home Delivery</a></li>
+        <li><a href="#">RTO Assistance</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 AutoIndia Motors Pvt. Ltd. | GST: 36AABCA1234B1ZX | CIN: U50100TG2008PTC123456</p>
+    <div class="social-links">
+      <a href="#" class="social-link">📘</a>
+      <a href="#" class="social-link">📸</a>
+      <a href="#" class="social-link">🐦</a>
+      <a href="#" class="social-link">▶️</a>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/918121370732?text=Hi%20AutoIndia%20Motors!%20I%20am%20interested%20in%20a%20car." target="_blank" class="whatsapp-float">💬</a>
+<button id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<div class="toast" id="toast"></div>
+
+<script src="script.js"></script>
+</body>
+</html>

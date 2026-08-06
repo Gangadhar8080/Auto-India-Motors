@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EMI Calculator - AutoIndia Motors</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="car-image-patch.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">AUTO<span>INDIA</span></a>
+  <ul class="nav-links">
+    <li><a href="inventory.html">All Cars</a></li>
+    <li><a href="new-cars.html">New Cars</a></li>
+    <li><a href="used-cars.html">Used Cars</a></li>
+    <li><a href="reviews.html">Reviews</a></li>
+    <li><a href="modifications.html">Mods Guide</a></li>
+    <li><a href="emi.html" class="active">EMI</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="nav-right-controls" style="display: flex; align-items: center; gap: 16px;">
+    <a href="contact.html" class="nav-cta">Book Test Drive</a>
+  </div>
+  
+  <!-- NAV ICONS -->
+  <div class="nav-right-controls" style="display: flex; align-items: center; gap: 24px;">
+    <button class="icon-btn" title="Toggle Theme" id="themeIcon" onclick="toggleTheme()" style="cursor: pointer; background: transparent; border: none; outline: none; color: inherit;">
+       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+    </button>
+    <a href="contact.html" class="icon-btn" title="Locations">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+    </a>
+    <button class="icon-btn" title="Language" style="cursor: pointer; background: transparent; border: none; outline: none; color: inherit;">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+    </button>
+    <a href="login.html" class="icon-btn" title="My Account">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+    </a>
+  </div>
+
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- EMI CALCULATOR -->
+<section id="emi">
+  <div class="section-header reveal">
+    <div class="section-tag">Financial Planning</div>
+    <h2 class="section-title">EMI Calculator</h2>
+    <p class="section-sub">Estimate your monthly installment instantly</p>
+    <div class="divider"></div>
+  </div>
+  <div class="emi-box reveal">
+    <div class="emi-grid">
+      <div>
+        <div class="emi-label">Car Price (₹)</div>
+        <input type="range" class="emi-range" id="emiPrice" min="200000" max="5000000" value="1200000" step="50000" oninput="calcEMI()">
+        <div class="emi-val" id="emiPriceVal">₹12,00,000</div>
+      </div>
+      <div>
+        <div class="emi-label">Down Payment (₹)</div>
+        <input type="range" class="emi-range" id="emiDown" min="50000" max="2000000" value="300000" step="25000" oninput="calcEMI()">
+        <div class="emi-val" id="emiDownVal">₹3,00,000</div>
+      </div>
+      <div>
+        <div class="emi-label">Interest Rate (%)</div>
+        <input type="range" class="emi-range" id="emiRate" min="6" max="18" value="9" step="0.5" oninput="calcEMI()">
+        <div class="emi-val" id="emiRateVal">9.0%</div>
+      </div>
+      <div>
+        <div class="emi-label">Loan Tenure (months)</div>
+        <input type="range" class="emi-range" id="emiTenure" min="12" max="84" value="60" step="12" oninput="calcEMI()">
+        <div class="emi-val" id="emiTenureVal">60 months</div>
+      </div>
+    </div>
+    <div class="emi-result">
+      <div style="font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:2px;margin-bottom:6px">Monthly EMI</div>
+      <div class="emi-monthly" id="emiMonthly">₹0</div>
+      
+      <!-- Updated breakdown to include On-Road Price -->
+      <div class="emi-breakdown" style="grid-template-columns: repeat(4, 1fr);">
+        <div class="emi-break-item"><strong id="emiOnRoad" style="color:var(--gold)">₹0</strong>On-Road Price</div>
+        <div class="emi-break-item"><strong id="emiLoanAmt">₹0</strong>Loan Amount</div>
+        <div class="emi-break-item"><strong id="emiTotalInt">₹0</strong>Total Interest</div>
+        <div class="emi-break-item"><strong id="emiTotalPay">₹0</strong>Total Payable</div>
+      </div>
+      
+      <!-- Indian Tax Disclaimer -->
+      <div style="font-size:11px; color:var(--muted); margin-top:20px; line-height:1.5;">
+        *Calculations are based on <strong>On-Road Price</strong> which includes ~10% RTO, ~3.5% Insurance, ₹2,500 Hypothecation/FASTag fees, and a mandatory <strong>1% TCS</strong> on vehicles exceeding ₹10 Lakhs (per Section 206C(1F) of the Income Tax Act).
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHATBOT -->
+<div class="chat-toggle" onclick="toggleChat()">💬 Support</div>
+<div class="chat-container" id="chatContainer">
+  <div class="chat-header">
+    <strong>AutoIndia AI Assistant</strong>
+    <button onclick="toggleChat()">×</button>
+  </div>
+  <div class="chat-box" id="chatBox">
+    <div class="chat-msg bot">Hello! I'm your AutoIndia assistant. How can I help you today?</div>
+  </div>
+  <div class="chat-input-area">
+    <input type="text" id="chatInput" placeholder="Type a message..." onkeypress="handleChatKey(event)">
+    <button onclick="sendChatMessage()">Send</button>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="index.html" class="nav-logo">AUTO<span>INDIA</span></a>
+      <p>India's most trusted multi-brand car dealership.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="inventory.html">All Cars</a></li>
+        <li><a href="new-cars.html">New Cars</a></li>
+        <li><a href="used-cars.html">Used Cars</a></li>
+        <li><a href="emi.html">EMI Calculator</a></li>
+        <li><a href="contact.html">Book Test Drive</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Brands</h4>
+      <ul>
+        <li><a href="#">Tata Motors</a></li>
+        <li><a href="#">Mahindra</a></li>
+        <li><a href="#">Hyundai India</a></li>
+        <li><a href="#">Kia India</a></li>
+        <li><a href="#">Ford India</a></li>
+        <li><a href="#">Maruti Suzuki</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#">Car Financing</a></li>
+        <li><a href="#">Insurance</a></li>
+        <li><a href="#">Car Service</a></li>
+        <li><a href="#">Modification Shop</a></li>
+        <li><a href="#">Home Delivery</a></li>
+        <li><a href="#">RTO Assistance</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 AutoIndia Motors Pvt. Ltd.</p>
+    <div class="social-links">
+      <a href="#" class="social-link">📘</a>
+      <a href="#" class="social-link">📸</a>
+      <a href="#" class="social-link">🐦</a>
+      <a href="#" class="social-link">▶️</a>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/918121370732?text=Hi%20AutoIndia%20Motors!%20I%20am%20interested%20in%20a%20car." target="_blank" class="whatsapp-float">💬</a>
+<button id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<div class="toast" id="toast"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
