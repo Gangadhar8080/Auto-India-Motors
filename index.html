@@ -64,10 +64,10 @@
 
         <div id="accountDropdown" style="display: none; position: absolute; right: 0; top: 40px; background: #ffffff; color: #212529; width: 260px; border-radius: 10px; box-shadow: 0 10px 25px rgba(0,0,0,0.15); border: 1px solid #ced4da; z-index: 1100; overflow: hidden; font-family: 'Nunito', sans-serif;">
           <div id="userInfoSection" style="padding: 16px; background: #f8f9fa; border-bottom: 1px solid #ced4da;">
-            <div style="font-weight: 700; font-size: 14px; color: #212529;" id="profileName">Ramya</div>
-            <div style="font-size: 12px; color: #6c757d; margin-top: 2px;" id="profileEmail">ramya@autoindia.in</div>
-            <div style="font-size: 12px; color: #6c757d; margin-top: 2px;" id="profileContact">+91 9550553729</div>
-            <div style="font-size: 11px; color: #ff4724; font-weight: 600; margin-top: 4px; text-transform: uppercase;" id="profileGender">Female</div>
+            <div style="font-weight: 700; font-size: 14px; color: #212529;" id="profileName">User</div>
+            <div style="font-size: 12px; color: #6c757d; margin-top: 2px;" id="profileEmail">user@autoindia.in</div>
+            <div style="font-size: 12px; color: #6c757d; margin-top: 2px;" id="profileContact">+91 0000000000</div>
+            <div style="font-size: 11px; color: #ff4724; font-weight: 600; margin-top: 4px; text-transform: uppercase;" id="profileGender">User</div>
           </div>
           <div style="padding: 8px 0;">
             <a href="user-dashboard.html" style="display: block; padding: 10px 16px; color: #212529; text-decoration: none; font-size: 13px; font-weight: 600;" onmouseover="this.style.background='#f1f3f5'" onmouseout="this.style.background='transparent'">⚙️ My Dashboard</a>
@@ -367,10 +367,17 @@
 
       if (isLoggedIn) {
         if (accountLabel) accountLabel.innerText = 'My Account';
-        document.getElementById('profileName').innerText = localStorage.getItem('user_name') || 'Ramya';
-        document.getElementById('profileEmail').innerText = localStorage.getItem('user_email') || 'ramya@autoindia.in';
-        document.getElementById('profileContact').innerText = localStorage.getItem('user_contact') || '+91 9550553729';
-        document.getElementById('profileGender').innerText = localStorage.getItem('user_gender') || 'Female';
+        
+        // Dynamically pull logged-in user details from localStorage
+        const userName = localStorage.getItem('user_name') || localStorage.getItem('autoIndiaUserName') || 'User';
+        const userEmail = localStorage.getItem('user_email') || 'user@autoindia.in';
+        const userContact = localStorage.getItem('user_contact') || 'N/A';
+        const userGender = localStorage.getItem('user_gender') || 'User';
+
+        document.getElementById('profileName').innerText = userName;
+        document.getElementById('profileEmail').innerText = userEmail;
+        document.getElementById('profileContact').innerText = userContact;
+        document.getElementById('profileGender').innerText = userGender;
       } else {
         if (userInfoSection) userInfoSection.style.display = 'none';
         if (accountLabel) accountLabel.innerText = 'Login';
@@ -380,6 +387,8 @@
     function handleLogout() {
       localStorage.removeItem('autoindia_user');
       sessionStorage.removeItem('autoindia_user');
+      localStorage.removeItem('autoIndiaToken');
+      localStorage.removeItem('autoIndiaUserName');
       window.location.href = 'index.html';
     }
 
@@ -388,9 +397,9 @@
       event.preventDefault();
       document.getElementById('accountDropdown').style.display = 'none';
       
-      document.getElementById('modalEditName').value = localStorage.getItem('user_name') || 'Ramya';
-      document.getElementById('modalEditEmail').value = localStorage.getItem('user_email') || 'ramya@autoindia.in';
-      document.getElementById('modalEditPhone').value = localStorage.getItem('user_contact') || '+91 9550553729';
+      document.getElementById('modalEditName').value = localStorage.getItem('user_name') || localStorage.getItem('autoIndiaUserName') || '';
+      document.getElementById('modalEditEmail').value = localStorage.getItem('user_email') || '';
+      document.getElementById('modalEditPhone').value = localStorage.getItem('user_contact') || '';
       document.getElementById('modalEditState').value = localStorage.getItem('user_state') || 'Telangana';
 
       document.getElementById('profileModal').style.display = 'flex';
@@ -414,7 +423,7 @@
       }
 
       try {
-        const response = await fetch('http://localhost:5000/api/auth/profile', {
+        const response = await fetch(`${API_URL}/auth/profile`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
@@ -427,6 +436,7 @@
 
         if (response.ok) {
           localStorage.setItem('user_name', data.user.name);
+          localStorage.setItem('autoIndiaUserName', data.user.name);
           localStorage.setItem('user_email', data.user.email);
           localStorage.setItem('user_contact', data.user.contact);
           localStorage.setItem('user_state', data.user.state || state);
