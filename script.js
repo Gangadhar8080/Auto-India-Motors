@@ -571,6 +571,9 @@ async function updateProfileData() {
     if (res.ok) {
       showToast('✅ Profile updated successfully!');
       localStorage.setItem('autoIndiaUserName', data.user.name);
+      localStorage.setItem('user_name', data.user.name);
+      localStorage.setItem('user_email', data.user.email);
+      localStorage.setItem('user_contact', data.user.contact);
     } else {
       showToast('⚠️ ' + data.message);
     }
@@ -642,8 +645,12 @@ async function handleUnifiedLogin() {
     const data = await res.json();
 
     if (res.ok) {
+      // Save authentication token and user profile details dynamically
       localStorage.setItem('autoIndiaToken', data.token);
       localStorage.setItem('autoIndiaUserName', data.name);
+      localStorage.setItem('user_name', data.name);
+      localStorage.setItem('user_email', data.email || data.user?.email || '');
+      localStorage.setItem('user_contact', data.contact || data.user?.contact || user);
       localStorage.setItem('autoindia_user', 'true');
 
       if (data.role === 'admin') {
@@ -653,7 +660,7 @@ async function handleUnifiedLogin() {
       } else {
         localStorage.setItem('autoIndiaUserLoggedIn', 'true');
         showToast(`✅ Welcome back, ${data.name}!`);
-        setTimeout(() => window.location.href = 'user-dashboard.html', 1200);
+        setTimeout(() => window.location.href = 'index.html', 1200);
       }
     } else {
       showToast('⚠️ ' + data.message);
@@ -667,6 +674,9 @@ function adminLogout() {
   localStorage.removeItem('autoIndiaAdminLoggedIn');
   localStorage.removeItem('autoIndiaToken');
   localStorage.removeItem('autoindia_user');
+  localStorage.removeItem('user_name');
+  localStorage.removeItem('user_email');
+  localStorage.removeItem('user_contact');
   showToast('🔒 Logged out successfully.');
   setTimeout(() => {
     window.location.href = 'index.html';
