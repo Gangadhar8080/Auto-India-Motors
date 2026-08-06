@@ -36,6 +36,16 @@ mongoose
 app.use("/api/auth", authRoutes);
 app.use("/api/cars", carRoutes);
 
+// POST route to handle contact form enquiries
+app.post('/api/submit-enquiry', async (req, res) => {
+  try {
+    const { firstName, lastName, phone, email, city, interestedIn, message } = req.body;
+    res.status(200).json({ message: 'Enquiry received successfully' });
+  } catch (err) {
+    res.status(500).json({ message: 'Server error', error: err.message });
+  }
+});
+
 // PUT route to update user profile in MongoDB (including email, gender, and state)
 app.put('/api/auth/profile', async (req, res) => {
   try {
