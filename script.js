@@ -46,7 +46,6 @@ function getImageUrl(imgPath) {
   if (imgPath.startsWith('http://') || imgPath.startsWith('https://')) {
     return imgPath;
   }
-  // Ensure clean pathing with backend server URL
   const cleanPath = imgPath.startsWith('/') ? imgPath.slice(1) : imgPath;
   return `${BACKEND_URL}/${cleanPath}`;
 }
@@ -175,7 +174,6 @@ const defaultCarsList = [
     image: 'images/virtus.jpg',
     parts: ['TSI Turbocharger', 'DSG Dual-Clutch Kit', 'Active Cylinder Tech (ACT) Sensor', 'Red Brake Calipers']
   },
-  
   {
     brand: 'Skoda', name: 'Slavia 1.5 TSI Style', type: ['Sedan'], stock: 4, condition: 'New',
     price: '19.12 Lakh', priceNum: 1912000,
@@ -183,7 +181,6 @@ const defaultCarsList = [
     image: 'images/slavia.jpg',
     parts: ['TSI Turbo Unit', 'DSG Mechatronic Kit', 'Cylinder Deactivation Sensor', 'Subwoofer Module']
   },
-  
   {
     brand: 'Honda', name: 'Amaze VX CVT', type: ['Sedan'], stock: 11, condition: 'New',
     price: '9.96 Lakh', priceNum: 996000,
@@ -205,8 +202,6 @@ const defaultCarsList = [
     image: 'images/baleno.jpg',
     parts: ['Heads-up Display Module', '360 View Camera', '9-inch SmartPlay Pro+']
   },
-  
-  
   {
     brand: 'Tata', name: 'Tiago.ev Tech Lux', type: ['Hatchback', 'EV'], stock: 4, condition: 'New',
     price: '11.89 Lakh', priceNum: 1189000,
@@ -214,7 +209,6 @@ const defaultCarsList = [
     image: 'images/tiago-ev.jpg',
     parts: ['Ziptron Battery Pack', 'Regenerative Braking Unit', 'CCS2 Charging Port']
   },
-  
   {
     brand: 'Maruti', name: 'S-Presso VXi+', type: ['Hatchback'], stock: 2, condition: 'Used',
     price: '5.50 Lakh', priceNum: 550000,
@@ -229,7 +223,6 @@ const defaultCarsList = [
     image: 'images/altroz.avif',
     parts: ['90-degree Door Hinges', 'Twin Cylinder CNG Kit']
   },
-  
   {
     brand: 'Tata', name: 'Safari Accomplished+ (A)', type: ['SUV'], stock: 2, condition: 'New',
     price: '27.34 Lakh', priceNum: 2734000,
@@ -272,8 +265,6 @@ const defaultCarsList = [
     image: 'images/scorpio-n.jpeg',
     parts: ['4XPLOR Terrain Modes', 'Sony 12-Speaker System', 'Watt’s Linkage Suspension']
   },
-  
-  
   {
     brand: 'Mahindra', name: 'XUV 7XO (700 Facelift)', type: ['SUV'], stock: 4, condition: 'New',
     price: '26.99 Lakh', priceNum: 2699000,
@@ -281,7 +272,6 @@ const defaultCarsList = [
     image: 'images/xuv7xo.jpg',
     parts: ['Smart Door Handles', 'Dual 10.25-inch Screens', 'Memory Seat Module']
   },
-  
   {
     brand: 'Maruti', name: 'Fronx Alpha Turbo', type: ['SUV'], stock: 9, condition: 'New',
     price: '13.04 Lakh', priceNum: 1304000,
@@ -289,8 +279,6 @@ const defaultCarsList = [
     image: 'images/fronx.webp',
     parts: ['BoosterJet Turbocharger', 'Head-Up Display Unit', '360 View Camera']
   },
-  
-  
   {
     brand: 'Tata', name: 'Sierra.ev (Concept Edition)', type: ['SUV', 'EV'], stock: 0, condition: 'New',
     price: '25.00 Lakh', priceNum: 2500000,
@@ -307,7 +295,6 @@ const defaultCarsList = [
   }
 ];
 
-// Combine DB cars with local list
 let cars = [...defaultCarsList]; 
 let currentFilter = 'All';
 let currentSearchQuery = '';
@@ -329,9 +316,7 @@ async function loadAllCars() {
     console.log("Backend not connected, using default cars list.", err);
   }
 }
-// Trigger fetch immediately
 loadAllCars();
-
 
 function stockLabel(stockQty) {
   if (stockQty > 5) return '✅ Available';
@@ -563,6 +548,37 @@ async function submitEnquiryForm() {
   }
 }
 
+// ── PROFILE UPDATE FUNCTION (API) ──
+async function updateProfileData() {
+  const token = localStorage.getItem('autoIndiaToken');
+  const name = document.getElementById('profileName')?.value;
+  const email = document.getElementById('profileEmail')?.value;
+  const contact = document.getElementById('profileContact')?.value;
+  const gender = document.getElementById('profileGender')?.value;
+  const state = document.getElementById('profileState')?.value;
+
+  try {
+    const res = await fetch(`${API_URL}/auth/profile`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify({ name, email, contact, gender, state })
+    });
+
+    const data = await res.json();
+    if (res.ok) {
+      showToast('✅ Profile updated successfully!');
+      localStorage.setItem('autoIndiaUserName', data.user.name);
+    } else {
+      showToast('⚠️ ' + data.message);
+    }
+  } catch (err) {
+    showToast('❌ Server Error. Could not connect to backend.');
+  }
+}
+
 function showToast(msg) {
   const t = document.getElementById('toast');
   if (!t) return;
@@ -628,7 +644,7 @@ async function handleUnifiedLogin() {
     if (res.ok) {
       localStorage.setItem('autoIndiaToken', data.token);
       localStorage.setItem('autoIndiaUserName', data.name);
-      localStorage.setItem('autoindia_user', 'true'); // Syncs with custom navbar user session state
+      localStorage.setItem('autoindia_user', 'true');
 
       if (data.role === 'admin') {
         localStorage.setItem('autoIndiaAdminLoggedIn', 'true');
@@ -701,7 +717,7 @@ async function saveNewCarLocally() {
   }
 }
 
-// ── ENHANCED CHATBOT SCRIPT (WITH FULL CONVERSATION FLOWS & CONTACT OPTIONS) ──
+// ── CHATBOT SCRIPT ──
 function toggleChat() {
   document.getElementById('chatContainer').classList.toggle('open');
 }
@@ -778,7 +794,7 @@ function sendChatMessage() {
   }, 500);
 }
 
-// ── FILTER EXTENSION FOR HOMEPAGE REDIRECT ──
+// ── FILTER EXTENSION ──
 function filterCarsByParams(params) {
   const { condition, vehicleType, budget, brand } = params;
   
@@ -791,7 +807,6 @@ function filterCarsByParams(params) {
     filtered = filtered.filter(c => c.condition.toLowerCase() === condition.toLowerCase());
   }
   
-  // FIXED: Explicitly handling vehicleType filtering to ensure Sedan, SUV, etc. match successfully
   if (vehicleType && vehicleType !== 'All' && vehicleType !== 'All Vehicle Types') {
     filtered = filtered.filter(c => {
       if (Array.isArray(c.type)) {
@@ -892,8 +907,6 @@ window.addEventListener('load', () => {
         }
       });
       filterCars(brandToFilter, activeButton);
-    } else {
-      // Intentionally left blank. loadAllCars() will trigger the initial render.
     }
   }
 
